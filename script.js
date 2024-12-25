@@ -124,5 +124,4 @@ function getAdvice() {
     document.getElementById("advice").innerText = translatedAdvice;
 }
 
-// Встановлюємо мову за замовчуванням
 switchLanguage(currentLanguage);
