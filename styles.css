@@ -116,7 +116,7 @@ button:hover {
     box-shadow: 0 0 5px rgba(255, 153, 0, 0.5);
 }
 
-.header {
+eader {
     position: fixed; 
     top: 0;
     left: 0;
@@ -125,18 +125,26 @@ button:hover {
     text-align: center;
     padding: 10px 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    display: flex;
+    z-index: 1000; /
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #2b2b2b; 
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); 
+    z-index: 1000; 
     justify-content: space-between;
-    align-items: center;
 }
 
 .brand-container {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 5px;
-    flex-grow: 1;
-    justify-content: center;
 }
 
 .header .brand-container p {
@@ -146,11 +154,6 @@ button:hover {
     color: #ff9900; 
     text-transform: uppercase; 
     letter-spacing: 1px; 
-}
-
-.language-switcher {
-    display: flex;
-    gap: 10px;
 }
 
 .language-switcher button {
