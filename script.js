@@ -1,3 +1,58 @@
+const translations = {
+    en: {
+        title: "Blackjack Helper",
+        headerTitle: "Made by Homyak",
+        playerHandLabel: "Your Hand:",
+        dealerCardLabel: "Dealer's Card:",
+        adviceButton: "Get Advice",
+        noAdvice: "No advice available for this combination.",
+        advicePrefix: "Advice: ",
+        adviceTranslations: {
+            "Double or Hit": "Double or Hit",
+            "Double or Stand": "Double or Stand",
+            "Split if Double After Split is possible, otherwise Hit": "Split if Double After Split is possible, otherwise Hit",
+            "Stand": "Stand",
+            "Hit": "Hit",
+            "Split": "Split",
+            "Re-split if Double After Split is possible, otherwise Hit": "Re-split if Double After Split is possible, otherwise Hit",
+            "Unknown": "Unknown"
+        }
+    },
+    uk: {
+        title: "Помічник у Блекджеку",
+        headerTitle: "Made by Homyak",
+        playerHandLabel: "Ваша рука:",
+        dealerCardLabel: "Карта дилера:",
+        adviceButton: "Отримати пораду",
+        noAdvice: "Немає поради для цієї комбінації.",
+        advicePrefix: "Порада: ",
+        adviceTranslations: {
+            "Double or Hit": "Подвоїти або Взяти",
+            "Double or Stand": "Подвоїти або Залишитись",
+            "Split if Double After Split is possible, otherwise Hit": "Розділити, якщо можна подвоїти після розділу, інакше Взяти",
+            "Stand": "Залишитись",
+            "Hit": "Взяти",
+            "Split": "Розділити",
+            "Re-split if Double After Split is possible, otherwise Hit": "Перерозділити, якщо можна подвоїти після розділу, інакше Взяти",
+            "Unknown": "Невідомо"
+        }
+    }
+};
+
+let currentLanguage = "en";
+
+function switchLanguage(lang) {
+    currentLanguage = lang;
+
+    document.getElementById("page-title").innerText = translations[lang].title;
+    document.getElementById("brand-text").innerText = translations[lang].headerTitle;
+    document.getElementById("main-title").innerText = translations[lang].title;
+    document.getElementById("player-hand-label").innerText = translations[lang].playerHandLabel;
+    document.getElementById("dealer-card-label").innerText = translations[lang].dealerCardLabel;
+    document.getElementById("advice-button").innerText = translations[lang].adviceButton;
+    document.getElementById("advice").innerText = ""; // Clear previous result
+}
+
 const strategyTable = {
     "8": {2: "H", 3: "H", 4: "H", 5: "H", 6: "H", 7: "H", 8: "H", 9: "H", 10: "H", A: "H"},
     "9": {2: "H", 3: "D/H", 4: "D/H", 5: "D/H", 6: "D/H", 7: "H", 8: "H", 9: "H", 10: "H", A: "H"},
@@ -33,41 +88,41 @@ const strategyTable = {
     "A,A": {2: "P", 3: "P", 4: "P", 5: "P", 6: "P", 7: "P", 8: "P", 9: "P", 10: "P", A: "P"}
 };
 
- function getAdvice() {
-            const playerHand = document.getElementById('player-hand').value; 
-            const dealerCard = document.getElementById('dealer-card').value;
+function getAdvice() {
+    const playerHand = document.getElementById("player-hand").value;
+    const dealerCard = document.getElementById("dealer-card").value;
 
-            let advice = '';
+    let advice = strategyTable[playerHand]?.[dealerCard] || "Unknown";
 
-            if (playerHand.includes(',')) {
-                advice = strategyTable[playerHand]?.[dealerCard] || 'Unknown';
-            } else {
-                advice = strategyTable[parseInt(playerHand)]?.[dealerCard] || 'Unknown';
-            }
+    switch (advice) {
+        case "D/H":
+            advice = "Double or Hit";
+            break;
+        case "D/S":
+            advice = "Double or Stand";
+            break;
+        case "P/H":
+            advice = "Split if Double After Split is possible, otherwise Hit";
+            break;
+        case "S":
+            advice = "Stand";
+            break;
+        case "H":
+            advice = "Hit";
+            break;
+        case "P":
+            advice = "Split";
+            break;
+        case "R/H":
+            advice = "Re-split if Double After Split is possible, otherwise Hit";
+            break;
+    }
 
-            switch (advice) {
-                case 'D/H':
-                    advice = 'Double or Hit';
-                    break;
-                case 'D/S':
-                    advice = 'Double or Stand';
-                    break;
-                case 'P/H':
-                    advice = 'Split if Double After Split is possible, otherwise Hit';
-                    break;
-                case 'S':
-                    advice = 'Stand';
-                    break;
-                case 'H':
-                    advice = 'Hit';
-                    break;
-                case 'P':
-                    advice = 'Split';
-                    break;
-                case 'R/H':
-                    advice = 'Re-split if Double After Split is possible, otherwise Hit';
-                    break;
-            }
+    const translatedAdvice =
+        translations[currentLanguage].adviceTranslations[advice] || translations[currentLanguage].noAdvice;
 
-            document.getElementById('advice').innerText = advice;
-        }
+    document.getElementById("advice").innerText = translatedAdvice;
+}
+
+// Встановлюємо мову за замовчуванням
+switchLanguage(currentLanguage);
