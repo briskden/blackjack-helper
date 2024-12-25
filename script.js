@@ -34,20 +34,17 @@ const strategyTable = {
 };
 
  function getAdvice() {
-            const playerHand = document.getElementById('player-hand').value; // Одна карта або сума карт гравця
-            const dealerCard = document.getElementById('dealer-card').value; // Карта дилера
+            const playerHand = document.getElementById('player-hand').value; 
+            const dealerCard = document.getElementById('dealer-card').value;
 
             let advice = '';
 
-            // Перевірка, чи є рука гравця парою карт для спліту
             if (playerHand.includes(',')) {
                 advice = strategyTable[playerHand]?.[dealerCard] || 'Unknown';
             } else {
-                // Якщо це сума карт
                 advice = strategyTable[parseInt(playerHand)]?.[dealerCard] || 'Unknown';
             }
 
-            // Перетворення стратегічних порад на зрозуміле формулювання
             switch (advice) {
                 case 'D/H':
                     advice = 'Double or Hit';
@@ -72,6 +69,5 @@ const strategyTable = {
                     break;
             }
 
-            // Виведення поради на екран
             document.getElementById('advice').innerText = advice;
         }
