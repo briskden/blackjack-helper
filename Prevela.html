@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Blackjack Helper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="brand-container">
+            <div class="language-switcher">
+                <button onclick="switchLanguage('en')">English</button>
+            </div>
+            <p id="brand-text">Made by Homyak</p>
+            <div class="language-switcher">
+                <button onclick="switchLanguage('uk')">Українська</button>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <h1 id="main-title">Blackjack Helper</h1>
+
+        <!-- Доданий розділ про правила гри в блекджек -->
+        <section id="rules-strategy">
+            <h2 id="rules-title">Blackjack game rules</h2>
+            <p id="rules-description">Blackjack, also known as twenty one, is one of the most popular casino card games. The object of the game is to score more points than the dealer, but not more than 21.</p>
+
+            <h3 id="basic-rules-title">Basic rules:</h3>
+            <ul id="basic-rules-list">
+                <li id="rule-1">Each player receives two cards. Face up.</li>
+                <li id="rule-2">Cards with a number (2-10) are worth as much as is indicated on them. The jack, queen, and king cards are worth 10 points. An ace can be worth 1 or 11.</li>
+                <li id="rule-3">The player can choose to "take" (get another card) or "stay" (keep his hand).</li>
+                <li id="rule-4">If a player scores more than 21 points, he "explodes" (loses).</li>
+                <li id="rule-5">The dealer must take a card if his total is less than or equal to 16 and stay if it is greater than 17.</li>
+            </ul>
+
+            <h3 id="basic-strategies-title">Main strategies:</h3>
+            <ul id="basic-strategies-list">
+                <li id="strategy-1"><strong>Doubling:</strong> When you are dealt two starting cards and believe that a third card will put you in an advantageous position, you can double your bet.</li>
+                <li id="strategy-2"><strong>Split:</strong> If your first two cards are of the same value, you can split them into two hands and play each separately.</li>
+                <li id="strategy-3"><strong>Hit/Stay:</strong> It is important to know when to take another card and when to stay. It is usually recommended to take if you have less than 17 points, but it depends on the dealer's card.</li>
+            </ul>
+        </section>
+
+        <!-- Додана кнопка для перенаправлення -->
+        <button onclick="location.href='index.html'" id="navigate-button2">Back</button>
+    </div>
+
+    <script src="translations.js"></script>
+    <script src="rules.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
